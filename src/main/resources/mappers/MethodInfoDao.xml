@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="com.springdemo.mapping.userMapper"就是com.springdemo.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
+ -->
+<mapper namespace="com.hpl.nownew.mapping.MethodInfoDao">
+
+    <select id="getMethodInfo"  resultType="com.hpl.nownew.MethodInfo">
+        select * from methodinfo
+    </select>
+
+    <select id="getAll" resultType="com.hpl.nownew.MethodInfo">
+        select * from methodinfo
+    </select>
+
+    <select id="findByName" parameterType="string" resultType="com.hpl.nownew.MethodInfo">
+        select * from methodinfo where patientName=#{name};
+    </select>
+
+    <insert id="insertMethodInfo" parameterType="com.hpl.nownew.MethodInfo" >
+        insert into methodinfo(patientName,patientSex,patientAge,doctorName,disease,cure,symptom,methodName,methodDetail)
+        values (#{patientName},#{patientSex},#{patientAge},#{doctorName},#{disease},#{cure},#{symptom},#{methodName},#{methodDetail})
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List" >
+        insert into methodinfo(patientName,patientSex,patientAge,doctorName,disease,cure,symptom,methodName,methodDetail)
+        values <foreach collection="list" item="user" separator=",">
+         (#{user.patientName},#{user.patientSex},#{user.patientAge},#{user.doctorName},#{user.disease},#{user.cure},#{user.symptom},#{user.methodName},#{user.methodDetail})
+    </foreach>
+    </insert>
+</mapper>

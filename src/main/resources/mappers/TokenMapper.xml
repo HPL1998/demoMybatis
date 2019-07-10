@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="com.springdemo.mapping.userMapper"就是com.springdemo.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
+ -->
+<mapper namespace="com.hpl.nownew.mapping.TokenMapper">
+    <insert id="addToken" parameterType="com.hpl.nownew.MyBean.Token">
+        insert into token_info(tokenid,userid,token,buildtime) values (#{tokenid},#{userid},#{token},#{buildtime})
+    </insert>
+
+    <select id="findByUserId" parameterType="int" resultType="com.hpl.nownew.MyBean.Token">
+        select * from token_info where userid=#{userid}
+    </select>
+
+    <update id="updataToken" parameterType="com.hpl.nownew.MyBean.Token">
+        update token_info set token=#{token},buildtime=#{buildtime}  where userid=#{userid}
+    </update>
+</mapper>
