@@ -12,7 +12,6 @@ public class DemoApplicationTests {
     @Test
     public void contextLoads() {
     } // dsdsd
-    hello hpl // dlsdlsldasas
     ok? // fvfb;lflg;
     ok2? // asdkajks
 }
